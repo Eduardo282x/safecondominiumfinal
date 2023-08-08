@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Safe Condominium
+        </title>
+        <link rel="shortcut icon" href="/resources/css/assets/icon/edificio (1).png" type="image/x-icon">
+        <link rel="stylesheet" href="resources/css/inicio.css">
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Courier New', Courier, monospace;
+                color: #fff;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            body {
+                background: #2db1d2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .navigationMenu,
+            .dashboard,
+            .rightInfo {
+                background: #2A2A56;
+                border-radius: 25px;
+                padding: 1em 2em;
+                height: 90vh;
+                margin: 3em auto;
+                border: 1px solid #ddd;
+
+            }
+
+            .dashboard {
+                background: transparent;
+                border: none;
+                overflow: hidden;
+            }
+
+            /*--------------------Menu Lateral----------------*/
+
+            .navigationMenu {
+                background: #7ed0e4;
+                width: 3rem;
+                border: 2px solid #ddd;
+                top: 0;
+                left: 1em;
+                position: absolute;
+                overflow: hidden;
+                z-index: 100;
+                transition: .5s;
+            }
+
+            .navigationMenu ul {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                height: 100%;
+                font-size: 1.4em;
+                width: 200px;
+            }
+
+            .navigationMenu ul li {
+                margin-left: -.7em;
+                list-style: none;
+                color: #fff;
+                filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(7deg) brightness(103%) contrast(103%);
+            }
+
+            .list {
+                transition: .5s;
+                cursor: pointer;
+            }
+
+            .list:hover {
+                filter: invert(79%) sepia(22%) saturate(6311%) hue-rotate(153deg) brightness(89%) contrast(83%);
+            }
+
+            .ti {
+                margin-left: 2.2em;
+                color: #000;
+            }
+
+            .i {
+                width: 1.2em;
+                height: 1.2em;
+                margin-left: 2.5px;
+                transform: scale(1.3) translateY(.5em);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .i.menu {
+                cursor: pointer;
+                background-image: url(./assets/icon/menu-hamburguesa.png);
+                background-image: url(../public/css/assets/icon/menu-hamburguesa.png);
+
+            }
+
+            .i.perfil {
+                background-image: url(../public/css/assets/icon/usuario.png);
+            }
+
+            .i.clean {
+                background-image: url(../public/css/assets/icon/escoba.png);
+            }
+
+            .i.secutiry {
+                background-image: url(../public/css/assets/icon/cerrar.png);
+            }
+
+            .i.market {
+                background-image: url(../public/css/assets/icon/tienda.png);
+            }
+
+            .i.client {
+                background-image: url(../public/css/assets/icon/usuarios.png);
+            }
+
+            .i.count {
+                background-image: url(../public/css/assets/icon/archivar-factura.png);
+            }
+
+            .arrow {
+                width: 1.2em;
+                height: 1.2em;
+                cursor: pointer;
+                transition: .5s;
+                transform: rotate(180deg) scale(2);
+                background-position: center;
+                background-size: cover;
+                background-image: url(../public/css/assets/icon/flecha-pequena-izquierda.png);
+            }
+
+            .arrow:hover {
+                transform: rotate(0deg) scale(2);
+            }
+
+            /*--------------------Menu Lateral----------------*/
+            .rightInfo {
+                background: #7ed0e4;
+                width: 15rem;
+                top: 0;
+                right: 20px;
+                position: absolute;
+            }
+
+            .salir {
+                border-radius: 5px;
+                position: absolute;
+                width: 2em;
+                height: 2em;
+                right: 2em;
+                top: .5em;
+                cursor: pointer;
+                font-size: 1.5em;
+            }
+
+
+            .close {
+                border: 2px solid #fff;
+                border-radius: 25px;
+                width: 2rem;
+                height: 2rem;
+                margin-top: -2rem;
+                margin-bottom: 1rem;
+                position: relative;
+                right: -8rem;
+                top: -.3rem;
+                transform: scale(1.2);
+                cursor: pointer;
+                transition: .5s;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.2em;
+            }
+
+            .close:hover {
+                transform: scale(1.5);
+            }
+
+            .titleForm {
+                color: #fff;
+            }
+
+            .createClient {
+                position: absolute;
+                transition: .5s;
+                display: flex;
+                opacity: 1;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                top: 5rem;
+                left: 32%;
+                background: #7ed0e4;
+                width: 20rem;
+                height: 35rem;
+                border: 1px solid #fff;
+                border-radius: 15px;
+            }
+
+
+            input {
+                margin: .8em auto;
+                width: 15em;
+                padding: 8px 20px;
+                font-size: 18px;
+                border: 2px solid #ddd;
+                border-radius: 20px;
+                color: #000;
+                background: #ffffff41;
+                outline: none;
+            }
+
+            input::placeholder {
+                color: #ffffff85;
+            }
+
+            .sign {
+                width: 60%;
+                padding: 5px 15px;
+                font-size: 18px;
+                border: 2px solid #ddd;
+                border-radius: 20px;
+                color: #000;
+                background: #ffffff41;
+            }
+
+            .sign:hover {
+                cursor: pointer;
+                transition: .5s;
+                background: #eeecec85;
+                box-shadow: 0px 0px 20px #ddd;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="salir" onclick="redirect('/inicio')">Volver</div>
+        <div class="navigationMenu" id="navigationMenu" onclick="openMenu()">
+            <ul>
+                <li>
+                    <div class="arrow"></div>
+                </li>
+                <li class="list count" onclick="redirect('/cuentas')">
+                    <div class="i count"></div> <span class="ti">Cuentas</span>
+                </li>
+                <li class="list client" onclick="redirect('/clientes')">
+                    <div class="i client"></div> <span class="ti">Clientes</span>
+                </li>
+                <li class="list market" onclick="redirect('/mercado')">
+                    <div class="i market"></div> <span class="ti">Pagos</span>
+                </li>
+                <li class="list" onclick="redirect('/seguridad')">
+                    <div class="i secutiry" ></div> <span class="ti">Seguridad</span>
+                </li>
+                <li class="list" onclick="redirect('/limpieza')">
+                    <div class="i clean"></div> <span class="ti">Limpieza</span>
+                </li>
+                <li class="list" onclick="redirect('/perfil')">
+                    <div class="i perfil"></div> <span class="ti">Perfil</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="dashboard">
+            <form action="updateClient" method="post" class="createClient" id="updateClient">
+                <% if(clientUpdate){%>
+                    <div class="close" onclick="redirect('/clientes')">X</div>
+                    <h2 class="titleForm">Actualización de Cliente</h2>
+                    <input type="text" value="<%= clientUpdate.ID %>" name="id" hidden>
+                    <input type="text" placeholder="Local"    value="<%= clientUpdate.local %>"     name="local"    id="local"      autocomplete="off">
+                    <input type="text" placeholder="Nombre"   value="<%= clientUpdate.nombre %>"    name="name"     id="name"       autocomplete="off">
+                    <input type="text" placeholder="Apellido" value="<%= clientUpdate.apellido %>"  name="lastname" id="lastname"   autocomplete="off">
+                    <input type="text" placeholder="Cedula"   value="<%= clientUpdate.cedula %>"    name="identify" id="identify"   autocomplete="off" maxlength="8" minlength="8">
+
+                    <input type="submit" class="sign" onclick="showForm()" value="Actualizar Cliente">
+                    <% } %>
+
+            </form>
+        </div>
+
+        <div class="rightInfo">
+            <div class="logo"></div>
+            <h3>Safe Condominum</h3>
+
+            <p>Queremos brindarle el mejor servicio de administración de condominios, por eso nos enfocamos en las
+                tecnologías de la información como una prioridad para nuestra organización. El sistema de condominio le dará
+                las mejores herramientas, funcionalidades y comodidades para la gestión de su junta de condominio y los
+                propietarios.</p>
+        </div>
+    </body>
+
+    <script>
+        let navigationMenu = document.getElementById('navigationMenu');
+        let createClient = document.getElementById('createClient');
+        let updateClient = document.getElementById('updateClient');
+        let show = true;
+        let open = true;
+
+        console.log(updateClient);
+        function openMenu() {
+            if (open) {
+                navigationMenu.style.width = '300px'
+                open = false
+            } else {
+                navigationMenu.style.width = '3%'
+                open = true
+            }
+        }
+
+        function showForm() {
+            if (show) {
+                createClient.style.opacity = '1';
+                createClient.style.zIndex = '10';
+                show = false;
+            } else {
+                createClient.style.opacity = '0';
+                createClient.style.zIndex = '-1';
+                show = true;
+            }
+        }
+
+        function redirect(page) {
+            window.location.href = page
+        }
+    </script>
+
+</html>

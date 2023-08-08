@@ -1,0 +1,33 @@
+.formUser{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.formUser p{
+    text-align: left;
+    width: 30%;
+    color: #000;
+    font-weight: bold;
+    margin-bottom: -.5rem;
+}
+
+input{
+    background: #ffffff41;
+}
+
+input:focus{
+    border: 2px solid #2db1d2;
+}
+
+.sign{
+    background: #2db1d2;
+    width: auto;
+    padding: .5rem 1.5rem;
+}
+.sign:hover{
+    background: #7ed0e4;
+}

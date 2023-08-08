@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Safe Condominium
+        </title>
+        <link rel="shortcut icon" href="/resources/css/assets/icon/edificio (1).png" type="image/x-icon">
+        <link rel="stylesheet" href="resources/css/inicio.css">
+        <link rel="stylesheet" href="resources/css/limpieza.css">
+
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    </head>
+
+    <body>
+        <div class="salir" onclick="redirect('/inicio')"></div>
+        <div class="navigationMenu" id="navigationMenu" onclick="openMenu()">
+            <ul>
+                <li>
+                    <div class="arrow"></div>
+                </li>
+                <li class="list count" onclick="redirect('/cuentas')">
+                    <div class="i count"></div> <span class="ti">Cuentas</span>
+                </li>
+                <li class="list client" onclick="redirect('/clientes')">
+                    <div class="i client"></div> <span class="ti">Clientes</span>
+                </li>
+                <li class="list market" onclick="redirect('/mercado')">
+                    <div class="i market"></div> <span class="ti">Pagos</span>
+                </li>
+                <li class="list" onclick="redirect('/seguridad')">
+                    <div class="i secutiry"></div> <span class="ti">Seguridad</span>
+                </li>
+                <li class="list">
+                    <div class="i clean"></div> <span class="ti">Limpieza</span>
+                </li>
+
+                <li class="list" onclick="redirect('/perfil')">
+                    <div class="i perfil"></div> <span class="ti">Perfil</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="dashboard">
+            <div class="headSearch">
+                <h2>Limpieza</h2>
+                <div class="search">
+                    <input type="text" id="searchInput" placeholder="Busca un trabajador" class="searchInput">
+                    <button class="searchBtn" onclick="search(searchInput.value)">Buscar</button>
+                </div>
+            </div>
+
+            <div class="action">
+                <div class="add" onclick="showForm()">
+                    <div class="addIcon"></div>
+                    Agregar Trabajador
+                </div>
+            </div>
+
+            <div class="table-content">
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cargo</th>
+                        <th>Cedula</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                    <% limpieza.forEach((limpieza)=> { %>
+                        <tr id="row">
+                            <td>
+                                <%= limpieza.nombre%>
+                            </td>
+                            <td>
+                                <%= limpieza.apellido%>
+                            </td>
+                            <td>
+                                <%= limpieza.cargo%>
+                            </td>
+                            <td>
+                                <%= limpieza.cedula%>
+                            </td>
+
+                            <td><a href="/editClear/<%= limpieza.ID%>">
+                                    <div class="editIcon"></div>
+                                </a>
+            </div>
+            </td>
+            <td onclick="openEraser('<%= limpieza.ID%>')">
+                <div class="eraserIcon"></div>
+        </div>
+        </td>
+        <!-- <a href="/eraserClear/<%= limpieza.ID%>"> </a>-->
+        </tr>
+        <%})%>
+            </table>
+            </div>
+            </div>
+
+            <div class="rightInfo">
+                <div class="logo"></div>
+                <h3>Safe Condominum</h3>
+
+                <p>Queremos brindarle el mejor servicio de administración de condominios, por eso nos enfocamos en las
+                    tecnologías de la información como una prioridad para nuestra organización. El sistema de condominio le
+                    dará las mejores herramientas, funcionalidades y comodidades para la gestión de su junta de condominio y
+                    los propietarios.</p>
+            </div>
+
+            <form action="createJob" method="post" class="createClient" id="createClient">
+                <div class="close" onclick="showForm()"></div>
+                <h2 class="titleForm">Registro de Trabajador</h2>
+                <input type="text"      placeholder="Nombre"    name="name"     id="name"     autocomplete="off">
+                <input type="text"      placeholder="Apellido"  name="lastname" id="lastname" autocomplete="off">
+                <input type="number"    placeholder="Cedula"    name="identify" id="identify" autocomplete="off" onkeypress="charMin()" maxlength="8" minlength="8" >
+                <input type="text"      placeholder="Cargo"     name="job"      id="job"      autocomplete="off">
+
+                <input type="submit" class="sign" onclick="sendForm()" value="Registrar Trabajador">
+            </form>
+
+            <div class="messageEraserJob" id="messageEraserJob">
+                <h3>¿Estas Seguro que desea eliminar el trabajador?</h3>
+                <div class="btnDisplay">
+                    <button class="btn Yes" onclick="redirectClear()">Si</button>
+                    <button class="btn No" onclick="closeBtn()">No</button>
+                </div>
+            </div>
+
+    </body>
+
+    <script>
+        let navigationMenu = document.getElementById('navigationMenu');
+        let createClient = document.getElementById('createClient');
+        let identify = document.getElementById('identify');
+        let tableClear = document.querySelectorAll('#row');
+        let messageEraserJob = document.getElementById('messageEraserJob');
+
+        let show = true;
+        let btn = true;
+        let open = true;
+        let validateChar = false;
+        let idClear;
+
+        function search(filtro){
+            for( let i = 0; i < tableClear.length; i++){
+                if((tableClear[i].innerHTML.toLowerCase().includes(filtro.toLowerCase()))){
+                        tableClear[i].style.display='table-row';
+                } else {
+                    tableClear[i].style.display='none';
+                }
+            }
+        }
+
+        function charMin() {
+            if (identify.value.length >= 8) {
+                validateChar = true;
+                identify.value = identify.value.substring(0, 7);
+            }
+        }
+
+        function openMenu() {
+
+            if (open) {
+                navigationMenu.style.width = '300px'
+                open = false
+            } else {
+                navigationMenu.style.width = '3%'
+                open = true
+            }
+        }
+
+        function redirectClear() {
+            window.location.href = `eraserClear/${idClear}`;
+        }
+
+        function openEraser(id) {
+            idClear = id;
+            if (btn) {
+                messageEraserJob.style.opacity = '1';
+                messageEraserJob.style.zIndex = '100';
+                btn = false;
+            } else {
+                messageEraserJob.style.opacity = '0';
+                messageEraserJob.style.zIndex = '-1';
+                btn = true;
+            }
+        }
+
+        function closeBtn() {
+            messageEraserJob.style.opacity = '0';
+            messageEraserJob.style.zIndex = '-1';
+            btn = true;
+        }
+
+        function showForm() {
+            if (show) {
+                createClient.style.opacity = '1';
+                createClient.style.zIndex = '10';
+                show = false;
+            } else {
+                createClient.style.opacity = '0';
+                createClient.style.zIndex = '-1';
+                show = true;
+            }
+        }
+
+
+        function sendForm() {
+            if (show && validateChar) {
+                createClient.style.opacity = '0';
+                createClient.style.zIndex = '-1';
+                show = true;
+                validateChar = false;
+            }
+        }
+
+
+        function redirect(page) {
+            window.location.href = page
+        }
+    </script>
+
+</html>

@@ -1,0 +1,157 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background: radial-gradient(circle at top left, #c01eff, #705dff, #3deff9);
+     */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ebe7e6;
+}
+
+.fondo {
+    width: 45%;
+    height: 70vh;
+
+    background-image: url(../css/assets/img/logo.jpeg);
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 0 50px;
+    transform: translateX(20%)
+}
+
+header {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ul {
+    color: #ddd;
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+}
+
+ul li {
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+}
+
+ul li::before {
+    content: '';
+    width: 0%;
+    background: #ddd;
+    height: 3px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    z-index: 100;
+    overflow: hidden;
+}
+
+ul li:hover::before {
+    width: 100%;
+    transition: .5s;
+}
+
+
+button {
+    padding: 5px 15px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    color: #fff;
+    background: #8b8a8a85;
+    margin-right: 40px;
+}
+
+.content {
+    background: #ebe7e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 55%;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 2.5em;
+    font-size: 2.3em;
+    color: #a2675b;
+}
+
+.login {
+    height: 350px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background: #ebe7e6;
+}
+
+a {
+    text-align: center;
+    color: #1938c2;
+}
+
+.user {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./assets/icon/usuario\ \(2\).png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 3em;
+    height: 3em;
+}
+
+input {
+    margin: auto;
+    padding: 8px 20px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    color: #fff;
+    background: #8b8a8a85;
+    outline: none;
+
+    /* border: 2px solid #2db1d2;
+    background: #0096bb36;
+     */
+}
+
+input::placeholder {
+    color: #ffffff85;
+}
+
+.sign {
+    width: auto;
+    margin: auto;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.sign:hover {
+    transition: .5s;
+    box-shadow: 2px 2px 50px 10px #ddd;
+}
+
+button:hover {
+    cursor: pointer;
+    transition: .5s;
+    background: #eeecec85;
+    box-shadow: 0px 0px 20px #ddd;
+}

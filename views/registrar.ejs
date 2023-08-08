@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Condominium</title>
+    <link rel="shortcut icon" href="/resources/css/assets/icon/edificio (1).png" type="image/x-icon">
+    <link rel="shortcut icon" href="./icon/usuario.png" type="image/x-icon">
+    <link rel="stylesheet" href="resources/css/registrar.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="salir" onclick="redirect('/')"></div>
+
+        <div class="login">
+            <form action="/register" method="post" class="login">
+                <h2>Registro</h2>
+                <input type="text"     placeholder="Nombre"             id="name"        name="name">
+                <input type="text"     placeholder="Apellido"           id="lastname"    name="lastname">
+                <input type="text"     placeholder="Cedula"             id="identify"    name="identify" maxlength="8">
+                <input type="tel"      placeholder="Telefono"           id="phonenumber" name="phonenumber" maxlength="11">
+                <input type="email"    placeholder="Correo"             id="email"       name="email">
+                <input type="password" placeholder="Contraseña"         id="pass"        name="pass" minlength="8">
+                <input type="password" placeholder="Repetir Contraseña" id="repass"      name="repass" minlength="8">
+
+                <button class="sign">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    function redirect(page) {
+        window.location.href = page
+    }
+</script>
+
+</html>

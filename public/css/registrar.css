@@ -1,0 +1,127 @@
+body {
+    background: radial-gradient(circle at top left, #c01eff, #705dff, #3deff9);
+    font-family: Arial, Helvetica, sans-serif
+}
+
+header {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ul {
+    color: #ddd;
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+}
+
+ul li {
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+}
+
+ul li::before {
+    content: '';
+    width: 0%;
+    background: #ddd;
+    height: 3px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    z-index: 100;
+    overflow: hidden;
+}
+
+ul li:hover::before {
+    width: 100%;
+    transition: .5s;
+}
+
+
+button {
+    padding: 5px 15px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    color: #fff;
+    background: #8b8a8a85;
+    margin-right: 40px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.login {
+    height: 350px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.user {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ddd;
+    font-size: 5em;
+}
+
+h2 {
+    text-align: center;
+    color: #fff;
+}
+
+input {
+    margin: .8em auto;
+    width: 15em;
+    padding: 8px 20px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    color: #fff;
+    background: #8b8a8a85;
+    outline: none;
+}
+
+input::placeholder {
+    color: #ffffff85;
+}
+
+.sign {
+    width: auto;
+    margin: auto;
+    margin-top: 40px;
+
+}
+
+button:hover {
+    cursor: pointer;
+    transition: .5s;
+    background: #eeecec85;
+    box-shadow: 0px 0px 20px #ddd;
+}
+
+.salir {
+    border-radius: 5px;
+    filter: invert(100%) sepia(0%) saturate(7478%) hue-rotate(15deg) brightness(100%) contrast(96%);
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    left: 35%;
+    top: 6em;
+    background-image: url(./assets/icon/salida.png);
+    background-position: center;
+    background-size: cover;
+    transform: rotate(180deg);
+    cursor: pointer;
+}

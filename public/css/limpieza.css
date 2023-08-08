@@ -1,0 +1,44 @@
+.messageEraserJob {
+    position: absolute;
+    transition: .5s;
+    opacity: 0;
+    top: 40vh;
+    left: 25vw;
+    z-index: 100;
+    width: 30em;
+    height: 10em;
+    background: #2db1d2;
+    border-radius: 25px;
+    text-align: center;
+    padding: 2em 1em;
+}
+
+
+.btnDisplay {
+    width: 70%;
+    margin: 0 4em;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+
+.btn {
+    padding: .5em 1em;
+    margin-top: 2em;
+    font-size: 1em;
+    background: #7ed0e4;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    border: 1px solid #fff;
+}
+
+.btn.No:hover {
+    background: red;
+    transition: 1s;
+}
+
+.btn.Yes:hover {
+    background: green;
+    transition: 1s;
+}

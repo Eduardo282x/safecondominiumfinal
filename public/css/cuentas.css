@@ -1,0 +1,96 @@
+.info {
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+}
+
+.btnLocales,
+.btnPago {
+    background: #2db1d2;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    padding: .6em 1.5em;
+    font-weight: 600;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.createClient {
+    height: 90%;
+    top: 5%;
+    overflow-y: scroll;
+}
+
+.titleForm {
+    top: 1.5rem;
+    width: 70%;
+    text-align: center;
+}
+
+.createClient p {
+    color: #000;
+    text-align: left;
+    margin-bottom: -.5rem;
+    width: 80%;
+}
+
+.close {
+    top: 3rem;
+    position: absolute;
+    right: .8rem;
+}
+
+.inputContent, .inputContentCount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.inputContent{
+    margin-top: 10rem;
+}
+
+.selectLocal {
+    margin-top: 5rem;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.dolar {
+    margin-left: 2rem;
+    font-size: 1rem;
+    color: #000000;
+}
+
+.updateCount {
+    position: absolute;
+    transition: .5s;
+    display: flex;
+    opacity: 0;
+    z-index: -1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 10rem;
+    left: 32%;
+    background: #7ed0e4;
+    width: 20rem;
+    height: 20rem;
+    border: 1px solid #fff;
+    border-radius: 15px;
+}

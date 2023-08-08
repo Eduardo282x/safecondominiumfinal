@@ -1,0 +1,610 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    /* background-image: url(./assets//img//fondo.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background: #2db1d2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigationMenu,
+.dashboard,
+.rightInfo {
+    border-radius: 25px;
+    padding: 1em 2em;
+    height: 90vh;
+    margin: 3em auto;
+    border: 1px solid #ddd;
+
+}
+
+.dashboard {
+    background: #fff;
+    overflow: hidden;
+}
+
+/*--------------------Menu Lateral----------------*/
+
+.navigationMenu {
+    background: #7ed0e4;
+    width: 3rem;
+    border: 2px solid #ddd;
+    top: 0;
+    left: 1em;
+    position: absolute;
+    overflow: hidden;
+    z-index: 100;
+    transition: .5s;
+}
+
+.navigationMenu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+    font-size: 1.4em;
+    width: 200px;
+}
+
+.navigationMenu ul li {
+    margin-left: -.7em;
+    list-style: none;
+    color: #fff;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(7deg) brightness(103%) contrast(103%);
+}
+
+.list {
+    transition: .5s;
+    cursor: pointer;
+}
+
+.list:hover {
+    filter: invert(79%) sepia(22%) saturate(6311%) hue-rotate(153deg) brightness(89%) contrast(83%);
+}
+
+.ti {
+    margin-left: 2.2em;
+    color: #000;
+}
+
+.i {
+    width: 1.2em;
+    height: 1.2em;
+    margin-left: 2.5px;
+    transform: scale(1.3) translateY(.5em);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.i.menu {
+    cursor: pointer;
+    background-image: url(./assets/icon/menu-hamburguesa.png);
+}
+
+.i.perfil {
+    background-image: url(./assets/icon/usuario.png);
+}
+
+.i.clean {
+    background-image: url(./assets/icon/escoba.png);
+}
+
+.i.secutiry {
+    background-image: url(./assets/icon/cerrar.png);
+}
+
+.i.market {
+    background-image: url(./assets/icon/ola-de-factura-de-dinero.png);
+}
+
+.i.client {
+    background-image: url(./assets/icon/usuarios.png);
+}
+
+.i.count {
+    background-image: url(./assets/icon/archivar-factura.png);
+}
+
+.arrow {
+    width: 1.2em;
+    height: 1.2em;
+    cursor: pointer;
+    transition: .5s;
+    transform: rotate(180deg) scale(2);
+    background-position: center;
+    background-size: cover;
+    background-image: url(./assets/icon/flecha-pequena-izquierda.png);
+}
+
+.arrow:hover {
+    transform: rotate(0deg) scale(2);
+}
+
+
+/*--------------------Menu Lateral----------------*/
+.rightInfo {
+    background: #7ed0e4;
+    width: 15rem;
+    top: 0;
+    right: 20px;
+    position: absolute;
+    text-align: justify;
+    /*border: 2px solid #000;*/
+}
+
+.rightInfo h3 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.dashboard {
+    width: 70%;
+    position: absolute;
+    top: 0;
+    left: 8%;
+}
+
+/* display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center; */
+.dashboard .title {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #7ed0e4;
+    color: #7ed0e4;
+}
+
+.dashboard .banner {
+    background-image: url(./assets/img/BANNERS-17.png);
+    background-position: center;
+    background-size: cover;
+    width: 95%;
+    height: 8em;
+    margin: auto;
+}
+
+.dashboard .content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.dashboard .content .card {
+    margin: 1em 2em;
+    height: auto;
+    width: 80%;
+    border: 2px solid #000000;
+    border-radius: 20px;
+    text-align: center;
+    padding-bottom: .5em;
+    transition: .5s;
+    filter: invert(85%) sepia(32%) saturate(5958%) hue-rotate(153deg) brightness(88%) contrast(84%);
+    cursor: pointer;
+}
+
+.dashboard .content .card .img {
+    width: 100%;
+    height: 5em;
+    margin: .5em 0;
+    color: #000;
+}
+
+.img.security {
+    background-image: url(./assets/icon/cerrar.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img.clear {
+    background-image: url(./assets/icon/escoba.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img.shop {
+    background-image: url(./assets/icon/ola-de-factura-de-dinero.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img.client {
+    background-image: url(./assets/icon/usuarios.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.img.count {
+    background-image: url(./assets/icon/archivar-factura.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card.count:hover {
+    color: #06b449;
+    cursor: pointer;
+}
+
+
+.card span {
+    margin: 1em 2px;
+    font-size: 1.5em;
+    color: #000;
+}
+
+.salir {
+    border-radius: 5px;
+    filter: invert(100%) sepia(0%) saturate(7478%) hue-rotate(15deg) brightness(100%) contrast(96%);
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    right: 2em;
+    top: .5em;
+    background-image: url(./assets/icon/salida.png);
+    background-position: center;
+    background-size: cover;
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+
+.search {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+    color: #000;
+    border: 1px solid #ffffff;
+    border-radius: 25px;
+    height: 40px;
+    background: #7ed0e4;
+    padding: 1.3em 0;
+}
+
+.searchInput {
+    outline: none;
+    background: transparent;
+    border: none;
+    padding: 2px 1em;
+    width: 60%;
+    font-size: .8rem;
+}
+
+.searchInput:focus {
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+}
+
+.searchBtn {
+    background: #2db1d2;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    padding: .6em 1.5em;
+    font-weight: 600;
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: .8rem;
+}
+
+.headSearch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headSearch h2 {
+    color: #2db1d2;
+}
+
+.table-content {
+    overflow: scroll;
+    height: 80%;
+}
+
+table {
+    margin: 1em 0;
+    color: #000;
+    width: 100%;
+}
+
+th {
+    color: #7ed0e4 !important;
+}
+
+tr,
+td,
+th {
+    padding: .4em 1em;
+    border: 2px solid #000000;
+    text-align: center;
+    color: #000;
+}
+
+.logo {
+    width: 100%;
+    height: 12em;
+    background-image: url('./assets/img/logo.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 1em;
+}
+
+.action {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add,
+.edit {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 20%;
+    cursor: pointer;
+    font-weight: 700;
+    color: #2db1d2;
+}
+
+.add{
+    width: 13em;
+}
+
+.add .addIcon {
+    background-image: url(./assets/icon/agregar.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 2rem;
+    height: 2rem;
+    transform: rotate(0deg);
+    transition: .5s;
+}
+
+.add:hover .addIcon {
+    transform: rotate(180deg);
+}
+
+.editIcon {
+    cursor: pointer;
+    background-image: url(./assets/icon/lapiz.png);
+    background-size: contain;
+    background-position: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: .5s;
+}
+
+td:hover .editIcon {
+    transform: translateX(15px);
+}
+
+.eraserIcon {
+    cursor: pointer;
+    transform: translateX(10px);
+    filter: invert(64%) sepia(43%) saturate(5315%) hue-rotate(324deg) brightness(91%) contrast(89%);
+    background-image: url(./assets/icon/basura.png);
+    background-size: contain;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+    transition: .5s;
+    color: #e00808;
+}
+
+td:hover .eraserIcon {
+    transform: scale(1.2) translateX(10px);
+}
+
+.close {
+    background-image: url(./assets/icon/circulo-marca-x.png);
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(7deg) brightness(103%) contrast(103%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 2rem;
+    height: 2rem;
+    margin-top: -2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    right: -8rem;
+    top: -3em;
+    transform: scale(1.2);
+    cursor: pointer;
+    transition: .5s;
+}
+
+.close:hover {
+    transform: scale(1.5);
+}
+
+.titleForm {
+    color: #000000;
+    position: absolute;
+    top: 2.5em;
+}
+
+.createClient {
+    position: absolute;
+    transition: .5s;
+    display: flex;
+    opacity: 0;
+    z-index: -1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 5rem;
+    left: 32%;
+    background: #7ed0e4;
+    width: 20rem;
+    height: 35rem;
+    border: 1px solid #fff;
+    border-radius: 15px;
+}
+
+
+input {
+    margin: .8em auto;
+    width: 15em;
+    padding: 8px 20px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    color: #000000;
+    background: #ffffff41;
+    outline: none;
+}
+
+input::placeholder {
+    color: #0000006c;
+}
+
+.sign {
+    width: 60%;
+    padding: 5px 15px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    color: #000000;
+    background: #ffffff41;
+}
+
+.sign:hover {
+    cursor: pointer;
+    transition: .5s;
+    background: #eeecec85;
+    box-shadow: 0px 0px 20px #ddd;
+}
+
+.selectLocal {
+    margin: .4em auto;
+    width: 15em;
+    padding: 4px 10px;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    color: #000000;
+    background: #ffffff41;
+    outline: none;
+}
+
+.labelLocal {
+    margin-top: 5px;
+    text-align: left;
+    width: 16em;
+    font-weight: 500;
+    color: #000;
+}
+
+option {
+    background: #9fdceb;
+    color: #fff;
+    border: none;
+    outline: none;
+}
+
+@media (max-width: 1280px) {
+    .dashboard {
+        max-width: 70%;
+        position: absolute;
+        top: 0;
+        left: 8%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .dashboard {
+        max-width: 63%;
+        position: absolute;
+        top: 0;
+        left: 10%;
+    }
+
+    .search{
+        scale: .9;
+    }
+
+    .logo{
+        background-size: contain;
+        height: 8em;
+    }
+}
+
+
+
+/* ---------------------------------------------------------//*/
+
+.messageEraserJob {
+    position: absolute;
+    transition: .5s;
+    opacity: 0;
+    z-index: -100;
+    top: 40vh;
+    left: 25vw;
+    width: 30em;
+    height: 10em;
+    background: #2db1d2;
+    border-radius: 25px;
+    text-align: center;
+    padding: 2em 1em;
+}
+
+
+.btnDisplay {
+    width: 75%;
+    margin: 0 4em;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+
+.btn {
+    padding: .5em 1em;
+    margin-top: 2em;
+    font-size: 1em;
+    background: #7ed0e4;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    border: 1px solid #fff;
+}
+
+.btn.No:hover {
+    background: red;
+    transition: 1s;
+}
+
+.btn.Yes:hover {
+    background: green;
+    transition: 1s;
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

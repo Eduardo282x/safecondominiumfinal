@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Condominium
+    </title>
+    <link rel="shortcut icon" href="/resources/css/assets/icon/edificio (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="resources/css/inicio.css">
+    <link rel="stylesheet" href="resources/css/mercado.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+</head>
+
+<body>
+    <div class="salir" onclick="redirect('/inicio')"></div>
+    <div class="navigationMenu" id="navigationMenu" onclick="openMenu()">
+        <ul>
+            <li>
+                <div class="arrow"></div>
+            </li>
+            <li class="list count" onclick="redirect('/cuentas')">
+                <div class="i count"></div> <span class="ti">Cuentas</span>
+            </li>
+            <li class="list client" onclick="redirect('/clientes')">
+                <div class="i client"></div> <span class="ti">Clientes</span>
+            </li>
+            <li class="list market">
+                <div class="i market"></div> <span class="ti">Pagos</span>
+            </li>
+            <li class="list" onclick="redirect('/seguridad')">
+                <div class="i secutiry"></div> <span class="ti">Seguridad</span>
+            </li>
+            <li class="list" onclick="redirect('/limpieza')">
+                <div class="i clean"></div> <span class="ti">Limpieza</span>
+            </li>
+            <li class="list" onclick="redirect('/perfil')">
+                <div class="i perfil"></div> <span class="ti">Perfil</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="dashboard">
+        <h1 class="title">Mercado Pereferico Panamericano</h1>
+        <div class="content">
+            <% metodosPago.forEach((pago)=> { %>
+                <div class="card" onclick="openMessagePay('<%= pago.metodo%>')">
+                    <span>
+                        <%= pago.metodo%>
+                    </span>
+
+                    <div style="display: none;" id="cedula">
+                        <%= pago.cedula%>
+                    </div>
+                    <div style="display: none;" id="telefono">
+                        <%= pago.telefono%>
+                    </div>
+                    <div style="display: none;" id="correo">
+                        <%= pago.correo%>
+                    </div>
+                    <div style="display: none;" id="numeroCuenta">
+                        <%= pago.numeroCuenta%>
+                    </div>
+                    <div style="display: none;" id="banco">
+                        <%= pago.banco%>
+                    </div>
+                    <div style="display: none;" id="idCount">
+                        <%= pago.ID%>
+                    </div>
+
+                </div>
+                <%})%>
+        </div>
+    </div>
+    <div class="rightInfo">
+        <div class="logo"></div>
+        <h3>Safe Condominum</h3>
+
+        <p>Queremos brindarle el mejor servicio de administración de condominios,
+            por eso nos enfocamos en las tecnologías de la información como una prioridad para nuestra organización. El
+            sistema de condominio le dará las mejores herramientas, funcionalidades y comodidades para la gestión de su
+            junta de condominio y los propietarios.</p>
+    </div>
+
+    <div class="messagePay" id="messagePay">
+        <div class="close" onclick="closeMessagePay()"></div>
+        <div class="editIcon" onclick="openCount()"></div>
+        <h3 id="titlePay"></h3>
+        <p id="dataPay"></p>
+    </div>
+
+    <form action="editCount" method="post" class="editCount" id="editCount">
+        <div class="close" onclick="closeCount()"></div>
+        <div class="inputEdit" id="inputEdit"></div>
+        <input type="submit" class="sign" onclick="closeCount()" value="Actualizar">
+    </form>
+
+</body>
+
+<script>
+    let navigationMenu = document.getElementById('navigationMenu');
+    let messagePay = document.getElementById('messagePay');
+    let titlePay = document.getElementById('titlePay');
+    let dataPay = document.getElementById('dataPay');
+    let metodosPago = document.getElementById('metodosPago');
+    let editCount = document.getElementById('editCount');
+    let inputEdit = document.getElementById('inputEdit');
+
+    let cedula = document.querySelectorAll('#cedula');
+    let telefono = document.querySelectorAll('#telefono');
+    let correo = document.querySelectorAll('#correo');
+    let numeroCuenta = document.querySelectorAll('#numeroCuenta');
+    let banco = document.querySelectorAll('#banco');
+    let idCount = document.querySelectorAll('#idCount');
+
+    let bank = document.getElementById('bank');
+    let identify = document.getElementById('identify');
+    let countNumber = document.getElementById('countNumber');
+    let phoneNumber = document.getElementById('phoneNumber');
+    let email = document.getElementById('email');
+    
+    let open = true;
+
+    function openMenu() {
+        if (open) {
+            navigationMenu.style.width = '14rem'
+            open = false
+        } else {
+            navigationMenu.style.width = '3rem'
+            open = true
+        }
+    }
+
+    function closeMessagePay() {
+        messagePay.style.opacity = '0';
+        messagePay.style.zIndex = '-20';
+    }
+
+    function openCount() {
+        editCount.style.opacity = '1';
+        editCount.style.zIndex = '120';
+    }
+
+    function closeCount() {
+        editCount.style.opacity = '0';
+        editCount.style.zIndex = '-20';
+    }
+
+    function openMessagePay(title) {
+        let peyMe = 0;
+        titlePay.innerHTML = title;
+
+        messagePay.style.opacity = '1';
+        messagePay.style.zIndex = '100';
+
+        switch (title) {
+            case 'Pago Movil':
+                peyMe = 0;
+                inputEdit.innerHTML = `
+                <h2>Actualizar Pago Movil</h2>
+                <input type="text" value=${idCount[peyMe].innerHTML} name="idCount" hidden>
+                <input type="text" value="" name="numeroCuenta" hidden>
+                <input type="text" value="" name="correo" hidden>
+                <p>Banco: </p>
+                <input type="text" value=${banco[peyMe].innerHTML} name="banco">
+                <p>Cedula: </p>
+                <input type="text" value=${cedula[peyMe].innerHTML} name="cedula">
+                <p>Telefono: </p>
+                <input type="text" value=${telefono[peyMe].innerHTML} name="telefono">
+                `;
+                break;
+
+            case 'Transferencia Bs':
+                peyMe = 1;
+                inputEdit.innerHTML = `
+                <h2>Actualizar Transferencia Bs</h2>
+                <input type="text" value=${idCount[peyMe].innerHTML} name="idCount" hidden>
+                <input type="text" value="" name="telefono" hidden>
+                <input type="text" value="" name="correo" hidden>
+                <p>Banco: </p>
+                <input type="text" value=${banco[peyMe].innerHTML} name="banco">
+                <p>Cedula: </p>
+                <input type="text" value=${cedula[peyMe].innerHTML} name="cedula">
+                <p>Número de Cuenta: </p>
+                <input type="text" value=${numeroCuenta[peyMe].innerHTML} name="numeroCuenta">
+                `;
+                break;
+
+            case 'Zelle':
+                peyMe = 2;
+                inputEdit.innerHTML = `
+                <h2>Actualizar Zelle</h2>
+                <input type="text" value=${idCount[peyMe].innerHTML} name="idCount" hidden>
+                <input type="text" value="" name="telefono" hidden>
+                <input type="text" value="" name="banco" hidden>
+                <input type="text" value="" name="cedula" hidden>
+                <input type="text" value="" name="numeroCuenta" hidden>
+                <p>Cuenta Zelle: </p>
+                <input type="text" value=${correo[peyMe].innerHTML} name="correo">
+                `;
+                break;
+        }
+
+        dataPay.innerHTML = `
+                    <p> ${banco[peyMe].innerHTML} </p>
+                    <p> ${cedula[peyMe].innerHTML} </p>
+                    <p> ${numeroCuenta[peyMe].innerHTML} </p>
+                    <p> ${telefono[peyMe].innerHTML} </p>
+                    <p> ${correo[peyMe].innerHTML} </p>
+                    `;
+
+    }
+
+    function redirect(page) {
+        window.location.href = page
+    }
+</script>
+
+</html>
