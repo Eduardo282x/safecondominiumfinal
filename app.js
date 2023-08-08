@@ -26,11 +26,11 @@ app.use(session({
 const connection = require('./database/dbConnection');
 
 app.get('/', (req, res) => {
-    res.render('login')
+    res.render('login');
 })
 
 app.get('/registrar', (req, res) => {
-    res.render('registrar')
+    res.render('registrar');
 })
 
 app.post('/register', (req, res) => {
@@ -41,21 +41,22 @@ app.post('/register', (req, res) => {
     const email = req.body.email
     const pass = req.body.pass
     connection.query(`INSERT INTO login (nombre, apellido, cedula, telefono, correo, contrasena) VALUES ('${name}','${lastname}','${identify}','${phonenumber}','${email}','${pass}')`,
-        () => {
-            res.render('login')
+        (err,results) => {
+            res.render('login');
+            if(err){ console.log(err);}
         });
 })
 
 app.get('/inicio', (req, res) => {
-    res.render('inicio')
+    res.render('inicio');
 })
 
 app.get('/recuperar', (req, res) => {
-    res.render('recuperar')
+    res.render('recuperar');
 })
 
 app.get('/mercado', (req, res) => {
-    connection.query(`SELECT * FROM cuentas`, (req, results) => {
+    connection.query(`SELECT * FROM cuentas`, (err, results) => {
         res.render('mercado', {
             metodosPago: results,
         });
@@ -77,7 +78,8 @@ app.post('/updateUser', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    connection.query(`UPDATE login SET nombre='${name}',apellido='${lastname}',cedula='${identity}',telefono='${phone}',correo='${email}',contrasena='${password}' WHERE ID='${id}'`, (err, resuls) => {
+    connection.query(`UPDATE login SET nombre='${name}',apellido='${lastname}',cedula='${identity}',telefono='${phone}',correo='${email}',contrasena='${password}' WHERE ID='${id}'`,
+    (err, resuls) => {
         if (err) { console.log(err); }
         else {
             res.render('login');
@@ -92,8 +94,10 @@ app.post('/editCount', (req, res) => {
     const numeroCuenta = req.body.numeroCuenta;
     const telefono = req.body.telefono;
     const correo = req.body.correo;
-    connection.query(`UPDATE cuentas SET cedula='${cedula}',telefono='${telefono}',correo='${correo}',numeroCuenta='${numeroCuenta}',banco='${banco}' WHERE ID = ${idCount}`, (err, resuls) => {
-        res.redirect('/mercado')
+    connection.query(`UPDATE cuentas SET cedula='${cedula}',telefono='${telefono}',correo='${correo}',numeroCuenta='${numeroCuenta}',banco='${banco}' WHERE ID = ${idCount}`,
+    (err, resuls) => {
+        res.redirect('/mercado');
+        if(err){console.log(err);};
     });
 })
 
@@ -131,13 +135,12 @@ app.post('/payClient', (req, res) => {
             console.log('La cantidad a cancelar es Invalida');
         }
     })
-    res.redirect('/cuentas')
+    res.redirect('/cuentas');
 })
 
 app.get('/cuentas', (req, res) => {
     const consultaDolar = require('consulta-dolar-venezuela');
-    consultaDolar.$monitor().then($ => { dolar = parseFloat($['$bcv'].slice(4, 9)); })
-
+    consultaDolar.$monitor().then($ => { dolar = parseFloat($['$bcv'].slice(4, 9)); });
     connection.query(`SELECT * FROM clientes`, (req, results) => {
         res.render('cuentas', {
             cuentas: results,
@@ -193,7 +196,7 @@ app.get('/clientes', (req, res) => {
     ]).then(([results1, results2]) => {
         res.render('clientes', { clientes: results1, locales: results2 });
     }).catch((error) => {
-        //console.error(error);
+        console.error(error);
     });
 });
 
@@ -255,9 +258,7 @@ app.post('/updateClient', (req, res) => {
     const identify = req.body.identify
     connection.query(`UPDATE clientes SET local='${local}',nombre='${name}',apellido='${lastname}',cedula='${identify}' WHERE ID='${id}'`, (err, resuls) => {
         if (err) { console.log(err); }
-        else {
-            res.redirect('/clientes');
-        }
+        else {res.redirect('/clientes');}
     })
 })
 
@@ -301,6 +302,7 @@ app.post('/createClient', (req, res) => {
         (err, result) => {
             connection.query(`UPDATE locales SET ocupado='SI' WHERE ID = ${local}`);
             res.redirect('/clientes');
+            if(err){console.log(err);};
         });
 })
 
@@ -327,6 +329,7 @@ app.post('/createJob', (req, res) => {
     connection.query(`INSERT INTO limpieza (nombre, apellido, cedula, cargo) VALUES ('${name}','${lastname}','${identify}','${job}')`,
         (err, result) => {
             res.redirect('/limpieza');
+            if(err){console.log(err);};
         });
 })
 
@@ -339,6 +342,7 @@ app.post('/createSec', (req, res) => {
     connection.query(`INSERT INTO seguridad (nombre, apellido, cedula, cargo) VALUES ('${name}','${lastname}','${identify}','${job}')`,
         (err, result) => {
             res.redirect('/seguridad');
+            if(err){console.log(err);};
         });
 })
 
@@ -380,6 +384,8 @@ app.post('/auth', (req, res) => {
                         seguridad: results,
                     })
                 }
+
+                if(err){console.log(err);}
             })
     }
 })
