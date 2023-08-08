@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const port = process.env.PORT || 3000;
 let userInfo;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -395,7 +396,7 @@ app.post('/auth', (req, res) => {
     }
 })
 
-app.listen(3000, (res, req) => {
+app.listen(port, (res, req) => {
     console.log('Servido Conectado');
 })
 
