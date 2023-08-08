@@ -308,7 +308,7 @@ app.post('/createClient', (req, res) => {
     const ano = date.getFullYear();
     const fecha = `${dia}/${mes}/${ano}`;
 
-    connection.query(`INSERT INTO clientes (local, nombre, apellido, cedula,fecha) VALUES ('${local}','${name}','${lastname}','${identify}','${fecha}')`,
+    connection.query(`INSERT INTO clientes (local, nombre, apellido, cedula,cuenta,fecha) VALUES ('${local}','${name}','${lastname}','${identify}','50','${fecha}')`,
         (err, result) => {
             connection.query(`UPDATE locales SET ocupado='SI' WHERE ID = ${local}`);
             res.redirect('/clientes');
