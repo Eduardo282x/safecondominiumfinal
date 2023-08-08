@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Safe Condominium
-</title>
+    </title>
     <link rel="stylesheet" href="resources/css/recuperar.css">
-    </head>
+</head>
+
 <body>
     <div class="content">
         <div class="salir" onclick="redirect('/')"></div>
@@ -15,13 +17,13 @@
         <form action="recover" method="post">
             <div class="login">
                 <h3>Ingrese Número de Telefono</h3>
-                <input type="tel" placeholder="0416-5610813" name="telefono" id="telefono">
+                <input type="tel" name="telefono" id="telefono" oninput="validarInputNumerico(this,11)">
 
                 <h3>Ingrese su Nueva Contraseña</h3>
-                <input type="password" placeholder="Contraseña" name="pass" id="pass" minlength="8">
-                
+                <input type="password" name="pass" id="pass">
+
                 <h3>Repita la Contraseña</h3>
-                <input type="password" placeholder="Contraseña" name="repass" id="repass" minlength="8">
+                <input type="password" name="repass" id="repass">
 
                 <input type="submit" class="sign" value="Recuperar">
             </div>
@@ -30,8 +32,17 @@
 </body>
 
 <script>
-    function redirect(page){
+    function redirect(page) {
         window.location.href = page
     }
+
+    function validarInputNumerico(input,min) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+
+        if (input.value.length > min) {
+            input.value = input.value.slice(0, min);
+        }
+    }
 </script>
+
 </html>

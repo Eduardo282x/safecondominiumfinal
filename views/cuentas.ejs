@@ -33,7 +33,7 @@
                 <div class="i secutiry"></div> <span class="ti">Seguridad</span>
             </li>
             <li class="list" onclick="redirect('/limpieza')">
-                <div class="i clean" ></div> <span class="ti">Limpieza</span>
+                <div class="i clean"></div> <span class="ti">Limpieza</span>
             </li>
             <li class="list" onclick="redirect('/perfil')">
                 <div class="i perfil"></div> <span class="ti">Perfil</span>
@@ -107,19 +107,19 @@
                     <%})%>
             </select>
             <p>Efectivo Bs</p>
-            <input type="number" placeholder="Efectivo Bs"               name="cashBs"     step=any id="cashBs"     autocomplete="off">
+            <input type="number" name="cashBs" step=any id="cashBs" autocomplete="off">
             <p>Efectivo USD</p>
-            <input type="number" placeholder="Efectivo USD"              name="cashUSD"    step=any id="cashUSD"    autocomplete="off">
+            <input type="number" name="cashUSD" step=any id="cashUSD" autocomplete="off">
             <p>Transferencia Bs</p>
-            <input type="number" placeholder="Transferencia Bs"          name="transBs"    step=any id="transBs"    autocomplete="off">
+            <input type="number" name="transBs" step=any id="transBs" autocomplete="off">
             <p>Pago Movil</p>
-            <input type="number" placeholder="Pago Movil"                name="phonePay"   step=any id="phonePay"   autocomplete="off">
+            <input type="number" name="phonePay" step=any id="phonePay" autocomplete="off">
             <p>Transferencia USD (Zelle)</p>
-            <input type="number" placeholder="Transferencia USD (Zelle)" name="transUSD"   step=any id="transUSD"   autocomplete="off">
+            <input type="number" name="transUSD" step=any id="transUSD" autocomplete="off">
             <p>Tarjeta Debito</p>
-            <input type="number" placeholder="Tarjeta Debito"            name="debitCard"  step=any id="debitCard"  autocomplete="off">
+            <input type="number" name="debitCard" step=any id="debitCard" autocomplete="off">
             <p>Tarjeta Credito</p>
-            <input type="number" placeholder="Tarjeta Credito"           name="creditCard" step=any id="creditCard" autocomplete="off">
+            <input type="number" name="creditCard" step=any id="creditCard" autocomplete="off">
         </div>
         <input type="hidden" name="count" id="count" autocomplete="off" value="<%= cuentas.cuenta%>">
 
@@ -187,7 +187,7 @@
         }
     }
 
-    function reload(){
+    function reload() {
         updateCount.style.opacity = '0';
         updateCount.style.zIndex = '-1';
         createClient.style.opacity = '0';

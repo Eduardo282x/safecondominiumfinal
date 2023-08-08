@@ -55,9 +55,9 @@
             <p>Apellido</p>
             <input type="text" placeholder="Apellido"   value="<%= perfil[0].apellido %>"   name="lastname"     id="lastname" autocomplete="off">
             <p>Cedula</p>
-            <input type="text" placeholder="Cedula"     value="<%= perfil[0].cedula %>"     name="identity"     id="identity" autocomplete="off">
+            <input type="text" placeholder="Cedula"     value="<%= perfil[0].cedula %>"     name="identity"     id="identity" autocomplete="off" oninput="validarInputNumerico(this,8)">
             <p>Telefono</p>
-            <input type="text" placeholder="Telefono"   value="<%= perfil[0].telefono %>"   name="phone"        id="phone" autocomplete="off">
+            <input type="text" placeholder="Telefono"   value="<%= perfil[0].telefono %>"   name="phone"        id="phone" autocomplete="off" oninput="validarInputNumerico(this,11)">
             <p>Correo</p>
             <input type="text" placeholder="Correo"     value="<%= perfil[0].correo %>"     name="email"        id="email" autocomplete="off">
             <p>Contraseña</p>
@@ -95,6 +95,14 @@
             } else {
                 tableSecurity[i].style.display = 'none';
             }
+        }
+    }
+
+    function validarInputNumerico(input,min) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+
+        if (input.value.length > min) {
+            input.value = input.value.slice(0, min);
         }
     }
 

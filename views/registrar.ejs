@@ -18,23 +18,36 @@
         <div class="login">
             <form action="/register" method="post" class="login">
                 <h2>Registro</h2>
-                <input type="text"     placeholder="Nombre"             id="name"        name="name">
-                <input type="text"     placeholder="Apellido"           id="lastname"    name="lastname">
-                <input type="text"     placeholder="Cedula"             id="identify"    name="identify" maxlength="8">
-                <input type="tel"      placeholder="Telefono"           id="phonenumber" name="phonenumber" maxlength="11">
-                <input type="email"    placeholder="Correo"             id="email"       name="email">
-                <input type="password" placeholder="Contraseña"         id="pass"        name="pass" minlength="8">
-                <input type="password" placeholder="Repetir Contraseña" id="repass"      name="repass" minlength="8">
+                <input type="text"     placeholder="Nombre"             id="name"       name="name"                                                                 >
+                <input type="text"     placeholder="Apellido"           id="lastname"   name="lastname"                                                             >
+                <input type="text"     placeholder="Cedula"             id="identify"   name="identify"    maxlength="8"  oninput="validarInputNumerico(this,8)"    >
+                <input type="tel"      placeholder="Telefono"           id="phonenumber"name="phonenumber" maxlength="11" oninput="validarInputNumerico(this,11)"   >
+                <input type="email"    placeholder="Correo"             id="email"      name="email"                                                                >
+                <input type="password" placeholder="Contraseña"         id="pass"       name="pass"        minlength="8"                                            >
+                <input type="password" placeholder="Repetir Contraseña" id="repass"     name="repass"      minlength="8"                                            >
 
                 <button class="sign">Registrarse</button>
             </form>
         </div>
     </div>
+
+    <!-- <div class="message" id="message">
+        <p>Las contraseña no coinciden</p>
+    </div> -->
 </body>
 <script>
     function redirect(page) {
         window.location.href = page
     }
+
+    function validarInputNumerico(input, min) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+
+        if (input.value.length > min) {
+            input.value = input.value.slice(0, min);
+        }
+    }
+
 </script>
 
 </html>

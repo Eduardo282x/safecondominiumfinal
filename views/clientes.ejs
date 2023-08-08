@@ -57,7 +57,7 @@
         </div>
 
         <div class="table-content">
-            <table>
+            <table id="tableSecurity">
                 <tr>
                     <th>Local</th>
                     <th>Nombre</th>
@@ -70,6 +70,9 @@
                 </tr>
                 <% clientes.forEach((clientes)=> { %>
                     <tr id="row">
+                        <td class="idHidden">
+                            <%= clientes.ID%>
+                        </td>
                         <td>
                             <%= clientes.local%>
                         </td>
@@ -88,9 +91,8 @@
                         <td>
                             <%= new Date(clientes.fecha).toLocaleDateString()%>
                         </td>
-                        <td><a href="/editClient/<%= clientes.ID%>">
-                                <div class="editIcon"></div>
-                            </a>
+                        <td><div class="editIcon" onclick="showFormEdit()"></div>
+
         </div>
         </td>
         <td onclick="openEraser('<%= clientes.ID%>')">
@@ -135,6 +137,24 @@
             <input type="submit" class="sign" onclick="showForm()" value="Registrar Cliente">
         </form>
 
+        <form action="updateClient" method="post" class="createClient" id="editClient">
+            <div class="close" onclick="showFormEdit()"></div>
+            <h2 class="titleForm">Actualización de Cliente</h2>
+            <p class="labelLocal">Seleccione un Local</p>
+            <select name="local" id="localEdit" class="selectLocal">
+                <% locales.forEach((local)=> { %>
+                    <option value="<%= local.ID%>">
+                        <%= local.local%>
+                    </option>
+                    <%})%>
+            </select>
+            <input type="hidden" placeholder="id"       name="id"       id="idEdit"     autocomplete="off">
+            <input type="text"   placeholder="Nombre"   name="name"     id="nameEdit"     autocomplete="off">
+            <input type="text"   placeholder="Apellido" name="lastname" id="lastnameEdit" autocomplete="off">
+            <input type="number" placeholder="Cedula"   name="identify" id="identifyEdit" autocomplete="off" onkeypress="charMin()" maxlength="8" minlength="8">
+            <input type="submit" class="sign" onclick="showFormEdit()" value="Actualizar Cliente">
+        </form>
+
         <div class="messageEraserJob" id="messageEraserJob">
             <h3>¿Estas Seguro que desea eliminar el cliente?</h3>
             <div class="btnDisplay">
@@ -148,13 +168,20 @@
 <script>
     let navigationMenu = document.getElementById('navigationMenu');
     let createClient = document.getElementById('createClient');
-    let updateClient = document.getElementById('updateClient');
+    let editClient = document.getElementById('editClient');
     let messageEraserJob = document.getElementById('messageEraserJob');
     let client = document.getElementById('client');
     let identify = document.getElementById('identify');
     let tableClient = document.querySelectorAll('#row');
 
+    let localEdit = document.getElementById('localEdit');
+    let idEdit = document.getElementById('idEdit');
+    let nameEdit = document.getElementById('nameEdit');
+    let lastnameEdit = document.getElementById('lastnameEdit');
+    let identifyEdit = document.getElementById('identifyEdit');
+
     let show = true;
+    let edit = true;
     let btn = true;
     let open = true;
     let validateChar = false;
@@ -224,6 +251,38 @@
     function redirect(page) {
         window.location.href = page
     }
+
+    function showFormEdit() {
+        if (edit) {
+            editClient.style.opacity = '1';
+            editClient.style.zIndex = '10';
+            edit = false;
+        } else {
+            editClient.style.opacity = '0';
+            editClient.style.zIndex = '-1';
+            edit = true;
+        }
+    }
+
+    function obtenerValoresFila(event) {
+        const fila = event.currentTarget;
+        const celdas = fila.querySelectorAll('td');
+
+        const id = celdas[0].innerText;
+        const local = celdas[1].innerText;
+        const nombre = celdas[2].innerText;
+        const apellido = celdas[3].innerText;
+        const cedula = celdas[4].innerText;
+
+        localEdit.value = local;
+        idEdit.value = id;
+        nameEdit.value = nombre;
+        lastnameEdit.value = apellido;
+        identifyEdit.value = cedula;
+    }
+
+    const filas = document.querySelectorAll('#tableSecurity tbody tr');
+    filas.forEach(fila => fila.addEventListener('click', obtenerValoresFila));
 </script>
 
 </html>

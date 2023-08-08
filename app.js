@@ -1,19 +1,9 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
 let userInfo;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// const date = new Date();
-
-// if(date.getDate() === 1){
-//     console.log('Es primer dia del mes');
-// } else {
-//     console.log(`El dia es ${date.getDate()}`);
-// }
-//const axios = require('axios');
-//const cheerio = require('cheerio');
 let dolar = 0;
 const consultaDolar = require('consulta-dolar-venezuela');
 consultaDolar.$monitor().then($ => { dolar = parseFloat($['$bcv'].slice(4, 9)); })
@@ -50,16 +40,10 @@ app.post('/register', (req, res) => {
     const phonenumber = req.body.phonenumber
     const email = req.body.email
     const pass = req.body.pass
-    const repass = req.body.repass
-    if (req.body.pass === req.body.repass) {
-        connection.query(`INSERT INTO login (nombre, apellido, cedula, telefono, correo, contrasena) VALUES ('${name}','${lastname}','${identify}','${phonenumber}','${email}','${pass}')`,
-            () => {
-                res.render('login')
-            });
-    }
-    else {
-        //console.log(req.body);
-    }
+    connection.query(`INSERT INTO login (nombre, apellido, cedula, telefono, correo, contrasena) VALUES ('${name}','${lastname}','${identify}','${phonenumber}','${email}','${pass}')`,
+        () => {
+            res.render('login')
+        });
 })
 
 app.get('/inicio', (req, res) => {
@@ -101,7 +85,7 @@ app.post('/updateUser', (req, res) => {
     })
 })
 
-app.post('/editCount',(req,res) => {
+app.post('/editCount', (req, res) => {
     const idCount = req.body.idCount;
     const banco = req.body.banco;
     const cedula = req.body.cedula;
@@ -151,6 +135,9 @@ app.post('/payClient', (req, res) => {
 })
 
 app.get('/cuentas', (req, res) => {
+    const consultaDolar = require('consulta-dolar-venezuela');
+    consultaDolar.$monitor().then($ => { dolar = parseFloat($['$bcv'].slice(4, 9)); })
+
     connection.query(`SELECT * FROM clientes`, (req, results) => {
         res.render('cuentas', {
             cuentas: results,
@@ -231,7 +218,7 @@ app.get('/editSecurity/:id', (req, res) => {
     })
 })
 
-app.post('/editClear/updateClient', (req, res) => {
+app.post('/updateClear', (req, res) => {
     const id = req.body.id
     const name = req.body.name
     const lastname = req.body.lastname
@@ -245,12 +232,12 @@ app.post('/editClear/updateClient', (req, res) => {
     })
 })
 
-app.post('/editSecurity/updateSecurity', (req, res) => {
-    const id = req.body.id
-    const name = req.body.name
-    const lastname = req.body.lastname
-    const identify = req.body.identify
-    const job = req.body.job
+app.post('/updateSecurity', (req, res) => {
+    const id = req.body.id;
+    const name = req.body.name;
+    const lastname = req.body.lastname;
+    const identify = req.body.identify;
+    const job = req.body.job;
     connection.query(`UPDATE seguridad SET nombre='${name}',apellido='${lastname}',cedula='${identify}',cargo='${job}' WHERE ID='${id}'`, (err, resuls) => {
         if (err) { console.log(err); }
         else {
@@ -260,7 +247,7 @@ app.post('/editSecurity/updateSecurity', (req, res) => {
 })
 
 
-app.post('/editClient/updateClient', (req, res) => {
+app.post('/updateClient', (req, res) => {
     const id = req.body.id
     const local = req.body.local
     const name = req.body.name
@@ -317,15 +304,15 @@ app.post('/createClient', (req, res) => {
         });
 })
 
-app.post('/updateCount',(req,res) => {
+app.post('/updateCount', (req, res) => {
     const cliente = req.body.cliente;
     const count = req.body.count;
     let oldCount = 0;
 
-    connection.query(`SELECT cuenta FROM clientes WHERE ID = '${cliente}';`,(err, result)=>{
+    connection.query(`SELECT cuenta FROM clientes WHERE ID = '${cliente}';`, (err, result) => {
         oldCount = result[0].cuenta;
         oldCount += parseFloat(count);
-        connection.query(`UPDATE clientes SET cuenta='${oldCount}', abono='0' WHERE ID = '${cliente}'`,(err, result)=>{
+        connection.query(`UPDATE clientes SET cuenta='${oldCount}', abono='0' WHERE ID = '${cliente}'`, (err, result) => {
             res.redirect('/cuentas')
         })
     });
@@ -358,7 +345,6 @@ app.post('/createSec', (req, res) => {
 
 app.post('/recover', (req, res) => {
     const telefono = req.body.telefono;
-
     const pass = req.body.pass;
     const repass = req.body.repass;
     let idUser;
@@ -390,11 +376,15 @@ app.post('/auth', (req, res) => {
                     userInfo = results;
                 }
                 else {
-                    res.render('login')
+                    res.render('login', {
+                        seguridad: results,
+                    })
                 }
             })
     }
 })
+
+const port = process.env.PORT || 3000;
 
 app.listen(port, (res, req) => {
     console.log('Servido Conectado');
