@@ -301,9 +301,14 @@ app.post('/createClient', (req, res) => {
     const name = req.body.name
     const lastname = req.body.lastname
     const identify = req.body.identify
-    //const count = req.body.count
 
-    connection.query(`INSERT INTO clientes (local, nombre, apellido, cedula ) VALUES ('${local}','${name}','${lastname}','${identify}')`,
+    const date = new Date();
+    const dia = date.getDay();
+    const mes = date.getMonth();
+    const ano = date.getFullYear();
+    const fecha = `${dia}/${mes}/${ano}`;
+
+    connection.query(`INSERT INTO clientes (local, nombre, apellido, cedula,fecha) VALUES ('${local}','${name}','${lastname}','${identify}','${fecha}')`,
         (err, result) => {
             connection.query(`UPDATE locales SET ocupado='SI' WHERE ID = ${local}`);
             res.redirect('/clientes');
