@@ -120,9 +120,9 @@
             <form action="updateSecurity" method="post" class="createClient" id="editClient">
                 <div class="close" onclick="showFormEdit()"></div>
                 <h2 class="titleForm">Actualizar Trabajador</h2>
-                <input type="hidden" placeholder="id"       name="id"       id="idEdit"     autocomplete="off" oninput="onlyText(event)">
+                <input type="hidden" placeholder="id"       name="id"       id="idEdit"     autocomplete="off">
                 <input type="text"   placeholder="Nombre"   name="name"     id="nameEdit"     autocomplete="off" oninput="onlyText(event)">
-                <input type="text"   placeholder="Apellido" name="lastname" id="lastnameEdit" autocomplete="off">
+                <input type="text"   placeholder="Apellido" name="lastname" id="lastnameEdit" autocomplete="off" oninput="onlyText(event)">
                 <input type="number" placeholder="Cedula"   name="identify" id="identifyEdit" autocomplete="off" onkeypress="charMin()" maxlength="8" minlength="8" >
                 <input type="text"   placeholder="Cargo"    name="job"      id="jobEdit"      autocomplete="off" oninput="onlyText(event)">
 
