@@ -33,7 +33,7 @@
     place-content: center;
 }
 
-p {
+.local p {
     font-size: 2em;
     color: #000;
 }
