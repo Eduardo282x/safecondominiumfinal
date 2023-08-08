@@ -51,9 +51,9 @@
             
             <input type="text" value="<%= perfil[0].ID %>" name="id" hidden>
             <p>Nombre</p>
-            <input type="text" placeholder="Nombre"     value="<%= perfil[0].nombre %>"     name="name"         id="name"     autocomplete="off" oninput="evitarNumeros(event)">
+            <input type="text" placeholder="Nombre"     value="<%= perfil[0].nombre %>"     name="name"         id="name"     autocomplete="off" oninput="onlyText(event)">
             <p>Apellido</p>
-            <input type="text" placeholder="Apellido"   value="<%= perfil[0].apellido %>"   name="lastname"     id="lastname" autocomplete="off" oninput="evitarNumeros(event)">
+            <input type="text" placeholder="Apellido"   value="<%= perfil[0].apellido %>"   name="lastname"     id="lastname" autocomplete="off" oninput="onlyText(event)">
             <p>Cedula</p>
             <input type="text" placeholder="Cedula"     value="<%= perfil[0].cedula %>"     name="identity"     id="identity" autocomplete="off" oninput="validarInputNumerico(this,8)">
             <p>Telefono</p>
@@ -105,14 +105,17 @@
         }
     }
 
-    function evitarNumeros(event) {
+    function onlyNumber(event) {
         const input = event.target;
         const inputValue = input.value;
+        const newValue = inputValue.replace(/\D/g, '');
+        input.value = newValue;
+    }
 
-      // Reemplaza los números en el valor del input por cadena vacía
+    function onlyText(event) {
+        const input = event.target;
+        const inputValue = input.value;
         const newValue = inputValue.replace(/[0-9]/g, '');
-
-      // Actualiza el valor del input con el nuevo valor sin números
         input.value = newValue;
     }
 
