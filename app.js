@@ -150,6 +150,11 @@ app.get('/cuentas', (req, res) => {
 })
 
 app.get('/locales', (req, res) => {
+
+    for(let i = 1; i <= 400; i++){
+        connection.query(`INSERT INTO locales(local, ocupado) VALUES ('${i}','NO')`);
+    }
+
     connection.query(`SELECT * FROM locales`, (req, results) => {
         res.render('locales', {
             locales: results,
