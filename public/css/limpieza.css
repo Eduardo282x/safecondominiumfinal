@@ -4,7 +4,7 @@
     opacity: 0;
     top: 40vh;
     left: 25vw;
-    z-index: 100;
+    z-index: -1;
     width: 30em;
     height: 10em;
     background: #2db1d2;
