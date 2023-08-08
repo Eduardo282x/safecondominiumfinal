@@ -256,11 +256,13 @@ app.post('/updateSecurity', (req, res) => {
 
 
 app.post('/updateClient', (req, res) => {
-    const id = req.body.id
-    const local = req.body.local
-    const name = req.body.name
-    const lastname = req.body.lastname
-    const identify = req.body.identify
+    const id = req.body.id;
+    const local = req.body.local;
+    const name = req.body.name;
+    const lastname = req.body.lastname;
+    const identify = req.body.identify;
+    connection.query(`UPDATE locales SET ocupado = 'NO' WHERE local = ${local}`);
+
     connection.query(`UPDATE clientes SET local='${local}',nombre='${name}',apellido='${lastname}',cedula='${identify}' WHERE ID='${id}'`, (err, resuls) => {
         if (err) { console.log(err); }
         else {res.redirect('/clientes');}
