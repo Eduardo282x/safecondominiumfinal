@@ -261,6 +261,7 @@ app.post('/updateClient', (req, res) => {
     const name = req.body.name;
     const lastname = req.body.lastname;
     const identify = req.body.identify;
+    console.log(req.body);
 
     connection.query(`UPDATE clientes SET local='${local}',nombre='${name}',apellido='${lastname}',cedula='${identify}' WHERE ID='${id}'`, (err, resuls) => {
         if (err) { console.log(err); }
