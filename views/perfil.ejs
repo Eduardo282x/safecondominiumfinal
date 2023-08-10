@@ -55,9 +55,9 @@
             <p>Apellido</p>
             <input type="text" placeholder="Apellido"   value="<%= perfil[0].apellido %>"   name="lastname"     id="lastname" autocomplete="off" oninput="onlyText(event)">
             <p>Cedula</p>
-            <input type="text" placeholder="Cedula"     value="<%= perfil[0].cedula %>"     name="identity"     id="identity" autocomplete="off" oninput="onlyNumber(this,8)">
+            <input type="text" placeholder="Cedula"     value="<%= perfil[0].cedula %>"     name="identity"     id="identity" autocomplete="off" oninput="onlyNumber(event,8)">
             <p>Telefono</p>
-            <input type="text" placeholder="Telefono"   value="<%= perfil[0].telefono %>"   name="phone"        id="phone" autocomplete="off" oninput="onlyNumber(this,11)">
+            <input type="text" placeholder="Telefono"   value="<%= perfil[0].telefono %>"   name="phone"        id="phone" autocomplete="off" oninput="onlyNumber(event,11)">
             <p>Correo</p>
             <input type="text" placeholder="Correo"     value="<%= perfil[0].correo %>"     name="email"        id="email" autocomplete="off">
             <p>Contraseña</p>
@@ -105,11 +105,14 @@
         }
     }
 
-    function onlyNumber(event) {
+    function onlyNumber(event,min) {
         const input = event.target;
         const inputValue = input.value;
         const newValue = inputValue.replace(/\D/g, '');
         input.value = newValue;
+        if(input.value.length > min){
+            input.value = input.value.substring(0, min - 1);
+        }
     }
 
     function onlyText(event) {
