@@ -115,11 +115,10 @@
         <form action="createJob" method="post" class="createClient" id="createClient">
             <div class="close" onclick="showForm()"></div>
             <h2 class="titleForm">Registro de Trabajador</h2>
-            <input type="text" placeholder="Nombre" name="name" id="name" autocomplete="off">
-            <input type="text" placeholder="Apellido" name="lastname" id="lastname" autocomplete="off">
-            <input type="number" placeholder="Cedula" name="identify" id="identify" autocomplete="off"
-                onkeypress="charMin()" maxlength="8" minlength="8">
-            <input type="text" placeholder="Cargo" name="job" id="job" autocomplete="off">
+            <input type="text" placeholder="Nombre" name="name" id="name" autocomplete="off" oninput="onlyText(event)">
+            <input type="text" placeholder="Apellido" name="lastname" id="lastname" autocomplete="off" oninput="onlyText(event)">
+            <input type="number" placeholder="Cedula" name="identify" id="identify" autocomplete="off" onkeypress="charMin()" maxlength="8" minlength="8">
+            <input type="text" placeholder="Cargo" name="job" id="job" autocomplete="off" oninput="onlyText(event)">
 
             <input type="submit" class="sign" onclick="sendForm()" value="Registrar Trabajador">
         </form>
@@ -128,11 +127,10 @@
             <div class="close" onclick="showFormEdit()"></div>
             <h2 class="titleForm">Actualizar Trabajador</h2>
             <input type="hidden" placeholder="id" name="id" id="idEdit" autocomplete="off">
-            <input type="text" placeholder="Nombre" name="name" id="nameEdit" autocomplete="off">
-            <input type="text" placeholder="Apellido" name="lastname" id="lastnameEdit" autocomplete="off">
-            <input type="number" placeholder="Cedula" name="identify" id="identifyEdit" autocomplete="off"
-                onkeypress="charMin()" maxlength="8" minlength="8">
-            <input type="text" placeholder="Cargo" name="job" id="jobEdit" autocomplete="off">
+            <input type="text" placeholder="Nombre" name="name" id="nameEdit" autocomplete="off" oninput="onlyText(event)">
+            <input type="text" placeholder="Apellido" name="lastname" id="lastnameEdit" autocomplete="off" oninput="onlyText(event)">
+            <input type="number" placeholder="Cedula" name="identify" id="identifyEdit" autocomplete="off" onkeypress="charMin()" maxlength="8" minlength="8">
+            <input type="text" placeholder="Cargo" name="job" id="jobEdit" autocomplete="off" oninput="onlyText(event)">
 
             <input type="submit" class="sign" onclick="showFormEdit()" value="Actualizar Trabajador">
         </form>
@@ -176,6 +174,13 @@
                 tableClear[i].style.display = 'none';
             }
         }
+    }
+
+    function onlyText(event) {
+        const input = event.target;
+        const inputValue = input.value;
+        const newValue = inputValue.replace(/[0-9]/g, '');
+        input.value = newValue;
     }
 
     function charMin() {

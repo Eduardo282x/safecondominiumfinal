@@ -150,6 +150,11 @@ app.get('/cuentas', (req, res) => {
 })
 
 app.get('/locales', (req, res) => {
+
+    // for(let i = 1; i <= 400; i++){
+    //     connection.query(`INSERT INTO locales(local, ocupado) VALUES ('${i}','NO')`);
+    // }
+
     connection.query(`SELECT * FROM locales`, (req, results) => {
         res.render('locales', {
             locales: results,
@@ -251,11 +256,12 @@ app.post('/updateSecurity', (req, res) => {
 
 
 app.post('/updateClient', (req, res) => {
-    const id = req.body.id
-    const local = req.body.local
-    const name = req.body.name
-    const lastname = req.body.lastname
-    const identify = req.body.identify
+    const id = req.body.id;
+    const local = req.body.local;
+    const name = req.body.name;
+    const lastname = req.body.lastname;
+    const identify = req.body.identify;
+
     connection.query(`UPDATE clientes SET local='${local}',nombre='${name}',apellido='${lastname}',cedula='${identify}' WHERE ID='${id}'`, (err, resuls) => {
         if (err) { console.log(err); }
         else {res.redirect('/clientes');}
@@ -296,9 +302,14 @@ app.post('/createClient', (req, res) => {
     const name = req.body.name
     const lastname = req.body.lastname
     const identify = req.body.identify
-    //const count = req.body.count
 
-    connection.query(`INSERT INTO clientes (local, nombre, apellido, cedula ) VALUES ('${local}','${name}','${lastname}','${identify}')`,
+    const date = new Date();
+    const dia = date.getDay();
+    const mes = date.getMonth();
+    const ano = date.getFullYear();
+    const fecha = `${dia}/${mes}/${ano}`;
+
+    connection.query(`INSERT INTO clientes (local, nombre, apellido, cedula,cuenta,abono,fecha) VALUES ('${local}','${name}','${lastname}','${identify}','50','0','${fecha}')`,
         (err, result) => {
             connection.query(`UPDATE locales SET ocupado='SI' WHERE ID = ${local}`);
             res.redirect('/clientes');

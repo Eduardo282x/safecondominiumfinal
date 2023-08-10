@@ -129,8 +129,8 @@
                     <%})%>
             </select>
 
-            <input type="text"   placeholder="Nombre"   name="name"     id="name"     autocomplete="off">
-            <input type="text"   placeholder="Apellido" name="lastname" id="lastname" autocomplete="off">
+            <input type="text"   placeholder="Nombre"   name="name"     id="name"     autocomplete="off" oninput="onlyText(event)">
+            <input type="text"   placeholder="Apellido" name="lastname" id="lastname" autocomplete="off" oninput="onlyText(event)">
             <input type="number" placeholder="Cedula"   name="identify" id="identify" autocomplete="off" onkeypress="charMin()" maxlength="8" minlength="8">
             <!-- <input type="number" placeholder="Cuenta"   name="count"    id="count" autocomplete="off"> -->
 
@@ -149,8 +149,8 @@
                     <%})%>
             </select>
             <input type="hidden" placeholder="id"       name="id"       id="idEdit"     autocomplete="off">
-            <input type="text"   placeholder="Nombre"   name="name"     id="nameEdit"     autocomplete="off">
-            <input type="text"   placeholder="Apellido" name="lastname" id="lastnameEdit" autocomplete="off">
+            <input type="text"   placeholder="Nombre"   name="name"     id="nameEdit"     autocomplete="off" oninput="onlyText(event)">
+            <input type="text"   placeholder="Apellido" name="lastname" id="lastnameEdit" autocomplete="off" oninput="onlyText(event)">
             <input type="number" placeholder="Cedula"   name="identify" id="identifyEdit" autocomplete="off" onkeypress="charMin()" maxlength="8" minlength="8">
             <input type="submit" class="sign" onclick="showFormEdit()" value="Actualizar Cliente">
         </form>
@@ -246,6 +246,13 @@
             createClient.style.zIndex = '-1';
             show = true;
         }
+    }
+
+    function onlyText(event) {
+        const input = event.target;
+        const inputValue = input.value;
+        const newValue = inputValue.replace(/[0-9]/g, '');
+        input.value = newValue;
     }
 
     function redirect(page) {
