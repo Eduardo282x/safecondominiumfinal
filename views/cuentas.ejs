@@ -52,7 +52,7 @@
 
         <div class="table-content">
             <table>
-                <tr>
+                <tr id="row">
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Cedula</th>
@@ -154,6 +154,7 @@
     let createClient = document.getElementById('createClient');
     let updateClient = document.getElementById('updateClient');
     let updateCount = document.getElementById('updateCount');
+    let tableClient = document.querySelectorAll('#row');
     let show = true;
     let open = true;
 
