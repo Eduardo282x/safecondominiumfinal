@@ -46,7 +46,7 @@
             <h2>Cuentas por Cobrar <span class="dolar" id="dolar">Dolar: <%= dolar %> $</span></h2>
             <div class="search">
                 <input type="text" placeholder="Busca un cliente" class="searchInput">
-                <button class="searchBtn">Buscar</button>
+                <button class="searchBtn" onclick="search(searchInput.value)">Buscar</button>
             </div>
         </div>
 
@@ -156,6 +156,16 @@
     let updateCount = document.getElementById('updateCount');
     let show = true;
     let open = true;
+
+    function search(filtro) {
+        for (let i = 0; i < tableClient.length; i++) {
+            if ((tableClient[i].innerHTML.toLowerCase().includes(filtro.toLowerCase()))) {
+                tableClient[i].style.display = 'table-row';
+            } else {
+                tableClient[i].style.display = 'none';
+            }
+        }
+    }
 
     function openMenu() {
         if (open) {
