@@ -74,18 +74,7 @@ justify-content: center; */
     margin: .5em 0;
 }
 
-@media (max-width: 1024px) {
-    table {
-        font-size: 13px;
-        width: 10rem !important;
-    }
 
-    .editIcon,
-    .eraserIcon,
-    .add .addIcon {
-        transform: scale(.8);
-    }
-}
 
 .messagePay {
     position: absolute;
@@ -153,4 +142,30 @@ justify-content: center; */
 
 .editIcon{
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(7deg) brightness(103%) contrast(103%);
+}
+
+@media (max-width: 1024px) {
+    table {
+        font-size: 13px;
+        width: 10rem !important;
+    }
+
+    .editIcon,
+    .eraserIcon,
+    .add .addIcon {
+        transform: scale(.8);
+    }
+}
+
+
+@media (max-width: 450px) { 
+    .dashboard .content .card{
+        width: 80%;
+    }
+
+    .messagePay,.editCount {
+        left: 5vw;
+        width: 90%;
+        border: 2px solid #fff;
+    }
 }

@@ -46,21 +46,38 @@
     width: 100%;
 }
 
-.ocupado {
+.disponible,.ocupado{
     width: 1em;
     height: 1em;
-    background: #d18f00;
     border-radius: 3em;
+}
+.ocupado {
+    background: #d18f00;
 }
 
 .disponible {
-    width: 1em;
-    height: 1em;
     background: #00a028;
-    border-radius: 3em;
 }
 
 .info {
     margin: 0 1em;
     font-size: 1em;
+}
+
+@media (max-width: 450px) {
+    .local {
+        width: 3em;
+        border-radius: 1em;
+        height: 3em;
+    }
+
+    .dashboard p {
+        font-size: 14px;
+    }
+
+    .disponible,.ocupado{
+        width: 1em;
+        height: .8em;
+        border-radius: 50%;
+    }
 }
