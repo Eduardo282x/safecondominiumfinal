@@ -197,13 +197,7 @@
     }
 
     function openMenu() {
-        if (open) {
-            navigationMenu.style.width = '300px'
-            open = false
-        } else {
-            navigationMenu.style.width = '3%'
-            open = true
-        }
+        navigationMenu.classList.toggle('navigationMenuExpand') ;
     }
 
     function charMin() {

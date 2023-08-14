@@ -48,6 +48,18 @@ body {
     transition: .5s;
 }
 
+.navigationMenuExpand {
+    background: #7ed0e4;
+    width: 14rem;
+    border: 2px solid #ddd;
+    top: 0;
+    left: 1em;
+    position: absolute;
+    overflow: hidden;
+    z-index: 100;
+    transition: .5s;
+}
+
 .navigationMenu ul {
     display: flex;
     flex-direction: column;
@@ -611,4 +623,73 @@ input[type=number]::-webkit-outer-spin-button {
 
 .idHidden{
     display: none;
+}
+
+
+@media (max-width: 450px) {
+    .salir {
+        width: 1.5em;
+        height: 1.5em;
+        right: 2em;
+        top: 1em;
+    }
+
+    .navigationMenu{
+        /* display: none; */
+        top: -2.7em;
+        height: 2.5em;
+        transition: .5s;
+    }
+
+    .arrow {
+        margin-top: -.45em;
+    }
+
+    .navigationMenuExpand {
+        height: auto;
+        transition: .5s;
+    }
+
+    .rightInfo{
+        display: none;
+    }
+
+    .dashboard {
+        width: 80%;
+        max-width: 100%;
+        overflow-y: scroll;
+        height: 100%;
+        padding: 2em 0;
+    }
+
+    .dashboard .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard .content .card {
+        margin: 1em 2em;
+        height: 80%;
+        width: 80%;
+    }
+
+    .dashboard .content .card .img {
+        height: 3em;
+    }
+
+    .dashboard .content .card span {
+        font-size: 1.5em;
+    }
+
+    .table-content {
+        overflow: scroll;
+        height: 80%;
+        width: 90%;
+        margin: auto;
+    }
+
+    .editIcon,.eraserIcon{
+        width: 1.2em;
+        background-repeat: no-repeat;
+    }
 }

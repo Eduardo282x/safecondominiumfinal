@@ -119,17 +119,9 @@
     let countNumber = document.getElementById('countNumber');
     let phoneNumber = document.getElementById('phoneNumber');
     let email = document.getElementById('email');
-    
-    let open = true;
 
     function openMenu() {
-        if (open) {
-            navigationMenu.style.width = '14rem'
-            open = false
-        } else {
-            navigationMenu.style.width = '3rem'
-            open = true
-        }
+        navigationMenu.classList.toggle('navigationMenuExpand');
     }
 
     function closeMessagePay() {
